@@ -14,7 +14,7 @@ const Header = () => {
             <View style={styles.inputBox}>
           <View style={styles.row}>
           <Ionicons name="search" size={22} color="#1f1f1f"/>
-          <TextInput placeholder='Search Amazon.in' placeholderTextColor="#848484"/>
+          <TextInput placeholder='Search Amazon.in' placeholderTextColor="#848484" style={styles.textInput}/>
           </View>
           
           <AntDesign name="scan1" size={22} color="#909594"/>
@@ -48,5 +48,8 @@ const styles = StyleSheet.create({
     row:{
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    textInput:{
+        padding:8,
     }
 })
