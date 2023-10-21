@@ -1,16 +1,18 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Cat1 from '../assets/fresh.jpeg'
 import { Categories } from '../data/Categories'
+import { useNavigation } from '@react-navigation/native'
 
 const Category = () => {
+  const navigation = useNavigation()
   return (
     <ScrollView horizontal style={styles.container}>
       {Categories.map(item=>(
-        <View key={item.id} style={styles.category}>
+        <TouchableOpacity onPress={()=> navigation.navigate('ProductScreen')} key={item.id} style={styles.category}>
           <Image source={item.image} style={styles.imgStyle}/>
       <Text style={styles.title}>{item.title}</Text>
-        </View>
+        </TouchableOpacity>
       ))}
       
     </ScrollView>

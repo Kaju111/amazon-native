@@ -4,11 +4,12 @@ import AmazonPay from '../assets/amazon-pay.png'
 import SendMoney from '../assets/send-money.jpg'
 import PayBills from '../assets/pay-bills.jpeg'
 import ScanQR from '../assets/scan-qr.jpeg'
-import Service1 from '../assets/service1.jpeg'
+import { RecentSearchData } from '../data/RecentSearchData'
 
 const Services = () => {
   return (
-    <ScrollView horizontal style={styles.container}>
+    <ScrollView horizontal style={styles.container}
+    contentContainerStyle={{paddingRight:20}}>
         <View style={styles.serviceContainer}>
             <View style={styles.row}>
             <View style={styles.innerContainer}>
@@ -31,13 +32,16 @@ const Services = () => {
             </View>
             </View>
         </View>
-        <View style={styles.outerCotainer}>
-            <Text style={styles.recentSearch}>Keep Shopping</Text>
-            <Image source={Service1} style={styles.serviceImg}/>
+        {RecentSearchData.map(item =>(
+        <View key={item.id} style={styles.outerCotainer}>
+            <Text style={styles.recentSearch}>{item.title}</Text>
+            <Image source={item.image} style={styles.serviceImg}/>
         </View>
+        ))}
     </ScrollView>
   )
 }
+
 
 export default Services
 
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     },
     outerCotainer:{
         backgroundColor: 'white',
-        marginLeft: 5,
+        marginLeft: 8,
         borderRadius: 5,
         elevation: 5,
         padding:5,
