@@ -1,10 +1,12 @@
 import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getRating } from '../utils/helper';
 import PrimeLogo from '../assets/prime-logo.png'
 import { ProductData } from '../data/ProductData';
 
 const ProductScreen = () => {
+
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Results</Text>
@@ -12,32 +14,33 @@ const ProductScreen = () => {
         Price and other details may vary based on product asize and colour.
       </Text>
       {
-        ProductData.map(item =>(
-<View style={styles.productSection}>
+      ProductData.map((item) =>{
+          const{productName, rating, ratingCount, price, crossOutText, deliveryBy, image} = item
+          return<View style={styles.productSection}>
         <View style={styles.productImgSection}>
-          <Image style={styles.productImg} source={item.image} />
+          <Image style={styles.productImg} source={image} />
         </View>
         <View style={styles.productDetailSection}>
           <Text style={styles.sponsored}>Sponsored</Text>
           <Text style={styles.productName}>
-            {item.productName}
+            {productName}
           </Text>
           <View style={styles.row}>
-            <Text style={styles.rating}>{item.rating}</Text>
+            <Text style={styles.rating}>{rating}</Text>
             {getRating(item.rating)}
-            <Text style={styles.ratingCount}>{item.ratingCount}</Text>
+            <Text style={styles.ratingCount}>{ratingCount}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.price}>₹ {item.price}</Text>
+            <Text style={styles.price}>₹ {price}</Text>
             <Text style={styles.mrp}>M.R.P.</Text>
-            <Text style={styles.crossout}>₹ {item.crossOutText}</Text>
+            <Text style={styles.crossout}>₹ {crossOutText}</Text>
             </View>
             <Text style={styles.cashback}>Up to 5% cashback with Amazon Pay Credit card</Text>
             <Image source={PrimeLogo} style={styles.logo}/>
-            <Text style={styles.cashback}>FREE Delivery by {item.deliveryBy}</Text>
+            <Text style={styles.cashback}>FREE Delivery by {deliveryBy}</Text>
         </View>
       </View>
-        ))
+})
       }
       
     </ScrollView>

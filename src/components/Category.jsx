@@ -1,6 +1,5 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import Cat1 from '../assets/fresh.jpeg'
 import { Categories } from '../data/Categories'
 import { useNavigation } from '@react-navigation/native'
 
