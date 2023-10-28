@@ -1,10 +1,31 @@
 import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getRating } from '../utils/helper';
 import PrimeLogo from '../assets/prime-logo.png'
 import { ProductData } from '../data/ProductData';
+import { useGlobalContext } from '../components/Context';
+
 
 const ProductScreen = () => {
+
+  // const {services} = useGlobalContext();
+  // console.warn(services)
+
+
+  const [data, setData] = useState(undefined)
+
+  const getAPIData = async () => {
+    const url = "http://localhost:5000/product"
+    let result = fetch(url)
+     result = await result.json()
+     console.warn(result)
+     setData(result)
+  }
+
+  useEffect(()=>{
+    getAPIData()
+  },[])
+
 
 
   return (
@@ -13,7 +34,15 @@ const ProductScreen = () => {
       <Text style={styles.tagline}>
         Price and other details may vary based on product asize and colour.
       </Text>
-      {
+
+        {
+          data ? <View>Hello</View> 
+              :
+          <Text>Not</Text>
+        }
+
+
+      {/* { 
       ProductData.map((item) =>{
           const{productName, rating, ratingCount, price, crossOutText, deliveryBy, image} = item
           return<View style={styles.productSection}>
@@ -42,7 +71,7 @@ const ProductScreen = () => {
       </View>
 })
       }
-      
+       */}
     </ScrollView>
   );
 };
